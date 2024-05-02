@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
 	# Define associations for classmates
 	has_many :classmate_enrollments, through: :programs, source: :enrollments
-	has_many :classmates, -> { distinct }, through: :classmate_enrollments, source: :user
+	has_many :classmates, -> (user) { distinct.where.not(id: user.id) }, through: :classmate_enrollments, source: :user
 
 	# Callback to validate kind update
 	before_update :validate_kind_update

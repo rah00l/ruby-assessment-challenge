@@ -21,7 +21,7 @@
 
   <p id='classmates'>
     <strong>Class Mates:</strong>
-    <% classmates = user.classmates.where.not(id: user.id) %>
+    <% classmates = user.classmates %>
     <%= classmates.pluck(:name).join(', ') if classmates.exists? %>
   </p>
 
